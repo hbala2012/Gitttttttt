@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -266,7 +269,38 @@ public class BaseClass {
 
 		}
 	  
+	  public static void repeat() {
+		  FlipCartLocators f = new FlipCartLocators();
+			List<String> productsList =new ArrayList<>();
+		     for(int i=0;i<f.getProducts().size();i++) {
+			     productsList.add(f.getProducts().get(i).getText());
+			     System.out.println(f.getProducts().get(i).getText());
+		     }
+		             
+	        List<Integer> PriceList =new ArrayList<>();
+	        for(int i=0;i< f.getPrices().size();i++) {
+	     	   String substring =  f.getPrices().get(i).getText().substring(1);
+	     	   String r="";
+	     	   if(substring.contains(",")) {
+	     		   r = substring.replace(",", "");
+	     	   }       	   
+	     	 PriceList.add(Integer.parseInt(r));
+	     	 System.out.println(Integer.parseInt(r));
+	        }      
+	        
+	        Collections.sort(productsList);
+	        System.out.println(productsList);
+	        Collections.sort(PriceList);
+	        System.out.println(PriceList);
+	        System.out.println(Collections.max(PriceList));
+	        System.out.println(Collections.min(PriceList));
+	      
+			       
+	}
+	  
+
+	}
+	  
 	  
 	
-}
 
